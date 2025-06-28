@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="project.css" />
+    <script defer src="project.js"></script>
+    <title>MovieFinder</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <form action="">
+          <input
+            type="search"
+            placeholder="Movie / Series"
+            name=""
+            id="search__field"
+          />
+          <button type="button">Search</button>
+        </form>
+      </nav>
+    </header>
+
+    <main class="container landing">
+      <div class="intro">
+        <h1>🍿 MovieFinder</h1>
+        <p>
+          Discover movies and series instantly.<br />Start by typing a title
+          above!
+        </p>
+      </div>
+      <img src="popcorn.png" class="bg__img" alt="Popcorn" />
+      <div class="movies--container"></div>
+
+      <div class="movie-detail hidden">
+        <div class="movie-detail__content">
+          <div class="movie-detail__poster">
+            <img src="" alt="Poster" class="movie-detail__img" />
+          </div>
+          <div class="movie-detail__info">
+            <button class="movie-detail__close">×</button>
+            <h2 class="movie-detail__title">Movie Title</h2>
+            <p class="movie-detail__description">
+              This is the description of the movie...
+            </p>
+            <ul class="movie-detail__list">
+              <li><strong>Year:</strong> <span class="detail-year"></span></li>
+              <li>
+                <strong>Actors:</strong> <span class="detail-actors"></span>
+              </li>
+              <li>
+                <strong>Rating:</strong> <span class="detail-rating"></span>
+              </li>
+              <li>
+                <strong>Language:</strong> <span class="detail-language"></span>
+              </li>
+              <li>
+                <strong>Genre:</strong> <span class="detail-genre"></span>
+              </li>
+              <li>
+                <strong>Director:</strong> <span class="detail-director"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="overlay hidden"></div>
+  </body>
+</html>
