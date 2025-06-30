@@ -61,7 +61,7 @@ button {
   border: none;
   padding: 0 2rem;
   cursor: pointer;
-  /* transition: background 0.3s; */
+  transition: background 0.3s;
   position: static; /* remove left offset! */
   transform: translateX(-91px);
 }
@@ -338,4 +338,12 @@ button:hover {
 button:focus {
   outline: none;
   box-shadow: inset 0 0 4px #788ea5;
+}
+
+.p {
+  font-size: 14px;
+}
+
+.h2 {
+  font-size: 20px;
 }
