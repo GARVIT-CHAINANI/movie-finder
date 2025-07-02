@@ -152,7 +152,28 @@ function eventsToCloseDetails() {
 
 eventsToCloseDetails();
 
-function loadPopularMovies() {
+async function fetchMovieForSidebar(title) {
+  try {
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=16f1b40b&s=${encodeURIComponent(title)}`
+    );
+
+    const data = await response.json();
+    console.log("Fetched:", title, data);
+
+    if (data.Search && data.Search.length > 0) {
+      const movie = data.Search[0];
+      renderPopularMovie(movie);
+      return movie;
+    }
+    return null;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+
+async function loadPopularMovies() {
   const popularTitles = [
     "Final Destination Bloodlines",
     "Predator: Killer of Killers",
@@ -175,33 +196,28 @@ function loadPopularMovies() {
     "Titanic",
   ];
 
-  popularTitles.forEach((title) => {
-    fetchMovieForSidebar(title);
-  });
+  // Fire all fetches in parallel
+  const fetchPromises = popularTitles.map((title) =>
+    fetchMovieForSidebar(title)
+  );
+
+  const allMovies = await Promise.all(fetchPromises);
+
+  console.log("All fetched movies:", allMovies.filter(Boolean));
 }
 
-async function fetchMovieForSidebar(title) {
-  try {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=16f1b40b&s=${title}`
-    );
-    const data = await response.json();
-
-    if (data.Search && data.Search.length > 0) {
-      const movie = data.Search[0];
-      renderPopularMovie(movie);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}
+loadPopularMovies();
 
 function renderPopularMovie(movie) {
   const container = document.querySelector(".popular-movies-container");
+  if (!container) {
+    console.error("Missing .popular-movies-container in HTML");
+    return;
+  }
 
   const html = `
     <div class="popular-movie" data-id="${movie.imdbID}">
-      <img src="${movie.Poster}" alt="${movie.Title}" />
+      <img src="${movie.Poster}" alt="${movie.Title}"/>
       <span>${movie.Title}</span>
     </div>
   `;
