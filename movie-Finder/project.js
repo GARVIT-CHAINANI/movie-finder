@@ -155,16 +155,15 @@ eventsToCloseDetails();
 async function fetchMovieForSidebar(title) {
   try {
     const response = await fetch(
-      `https://www.omdbapi.com/?apikey=16f1b40b&s=${encodeURIComponent(title)}`
+      `https://www.omdbapi.com/?apikey=16f1b40b&t=${encodeURIComponent(title)}`
     );
-
     const data = await response.json();
-    console.log("Fetched:", title, data);
 
-    if (data.Search && data.Search.length > 0) {
-      const movie = data.Search[0];
-      renderPopularMovie(movie);
-      return movie;
+    if (data.Response === "True") {
+      renderPopularMovie(data);
+      return data;
+    } else {
+      console.warn(`Movie not found for title: ${title}`);
     }
     return null;
   } catch (err) {
