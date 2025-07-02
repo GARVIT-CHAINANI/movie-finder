@@ -237,6 +237,3 @@ document
 
     moreData(id);
   });
-
-// load them on page load
-loadPopularMovies();
