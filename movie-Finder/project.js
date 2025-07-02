@@ -34,6 +34,26 @@ function showMovieDetail(data) {
   movieDetailContainer.classList.remove("hidden");
 }
 
+async function moreData(id) {
+  showSpinner();
+  document.querySelector(".overlay").classList.remove("hidden");
+
+  try {
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=16f1b40b&i=${id}&plot=full`
+    );
+
+    const moreDataMovie = await response.json();
+    console.log(moreDataMovie);
+    showMovieDetail(moreDataMovie);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    document.querySelector(".overlay").classList.add("hidden");
+    hideSpinner();
+  }
+}
+
 function closeMovieDetail(e) {
   document.querySelector(".movie-detail").classList.add("hidden");
 }
@@ -66,7 +86,7 @@ async function MoviesBySearch(search) {
     document.querySelector(".overlay").classList.add("hidden");
     const intro = document.querySelector(".intro");
     if (intro) intro.style.display = "none";
-
+    document.querySelector(".landing").style.marginLeft = "14%";
     hideSpinner();
   }
 }
@@ -105,26 +125,6 @@ moviesContainer.addEventListener("click", function (e) {
 
   if (!movieEl) return;
 
-  async function moreData(id) {
-    showSpinner();
-    document.querySelector(".overlay").classList.remove("hidden");
-
-    try {
-      const response = await fetch(
-        `https://www.omdbapi.com/?apikey=16f1b40b&i=${id}&plot=full`
-      );
-
-      const moreDataMovie = await response.json();
-      console.log(moreDataMovie);
-      showMovieDetail(moreDataMovie);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      document.querySelector(".overlay").classList.add("hidden");
-      hideSpinner();
-    }
-  }
-
   moreData(movieEl.dataset.id);
 });
 
@@ -151,3 +151,77 @@ function eventsToCloseDetails() {
 }
 
 eventsToCloseDetails();
+
+function loadPopularMovies() {
+  const popularTitles = [
+    "Final Destination Bloodlines",
+    "Predator: Killer of Killers",
+    "Bhool Chuk Maaf",
+    "Clown in a Cornfield",
+    "Sikandar",
+    "Kesari Chapter 2",
+    "Wick Is Pain",
+    "Until Dawn",
+    "Ground Zero",
+    "The Monkey",
+    "Detective Sherdil",
+    "Gajaana",
+    "Snow White",
+    "In the Lost Lands",
+    "KPop Demon Hunters",
+    "Interstellar",
+    "Avengers: Endgame",
+    "The Dark Knight",
+    "Titanic",
+  ];
+
+  popularTitles.forEach((title) => {
+    fetchMovieForSidebar(title);
+  });
+}
+
+async function fetchMovieForSidebar(title) {
+  try {
+    const response = await fetch(
+      `https://www.omdbapi.com/?apikey=16f1b40b&s=${title}`
+    );
+    const data = await response.json();
+
+    if (data.Search && data.Search.length > 0) {
+      const movie = data.Search[0];
+      renderPopularMovie(movie);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function renderPopularMovie(movie) {
+  const container = document.querySelector(".popular-movies-container");
+
+  const html = `
+    <div class="popular-movie" data-id="${movie.imdbID}">
+      <img src="${movie.Poster}" alt="${movie.Title}" />
+      <span>${movie.Title}</span>
+    </div>
+  `;
+
+  container.insertAdjacentHTML("beforeend", html);
+}
+
+// handle clicks
+document
+  .querySelector(".popular-movies-container")
+  .addEventListener("click", function (e) {
+    const movieEl = e.target.closest(".popular-movie");
+    if (!movieEl) return;
+
+    const id = movieEl.dataset.id;
+    if (!id) return;
+    console.log(id);
+
+    moreData(id);
+  });
+
+// load them on page load
+loadPopularMovies();
