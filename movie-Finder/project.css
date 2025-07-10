@@ -621,6 +621,18 @@ button:focus {
     padding: 2rem 1rem;
   }
 
+  .movie-detail__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  font-size: 3rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 500; /* Higher than other content */
+}
+
   /* Hide sidebar on search results */
   .movies--container[style*="opacity: 1"] ~ .popular-sidebar {
     display: none !important;
