@@ -437,3 +437,144 @@ button:focus {
 .popular-sidebar::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+/* ------------------------------------------
+   Responsive adjustments for tablets & mobile
+---------------------------------------------*/
+@media (max-width: 768px) {
+  html {
+    font-size: 55%;
+  }
+
+  header {
+    height: auto;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  nav {
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+
+  form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #search__field {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 50px;
+    font-size: 1.6rem;
+  }
+
+  button {
+    width: 100%;
+    transform: none;
+    border-radius: 50px;
+    height: 4rem;
+    font-size: 1.8rem;
+  }
+
+  .movies--container {
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+
+  .movie {
+    height: auto;
+  }
+
+  .movie__img {
+    height: auto;
+  }
+
+  .movie__data {
+    position: static;
+    backdrop-filter: none;
+    background-color: #333;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .movie__name {
+    font-size: 2.2rem;
+  }
+
+  .movie__region,
+  .movie__row {
+    font-size: 1.4rem;
+  }
+
+  .movie__row span {
+    font-size: 1.6rem;
+  }
+
+  .movie-detail__content {
+    flex-direction: column;
+  }
+
+  .movie-detail__poster {
+    min-width: 100%;
+    flex: none;
+  }
+
+  .movie-detail__info {
+    flex: none;
+    padding: 1.5rem;
+  }
+
+  .movie-detail__title {
+    font-size: 3rem;
+  }
+
+  .movie-detail__description {
+    font-size: 1.6rem;
+  }
+
+  .movie-detail__list li {
+    font-size: 1.6rem;
+  }
+
+  .intro h1 {
+    font-size: 3rem;
+  }
+
+  .intro p {
+    font-size: 1.6rem;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .popular-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    box-shadow: none;
+    border-right: none;
+    margin-bottom: 2rem;
+  }
+
+  .popular-sidebar h3 {
+    font-size: 2rem;
+  }
+
+  .popular-movie span {
+    font-size: 1.4rem;
+  }
+
+  .popular-movie img {
+    width: 50px;
+    height: 70px;
+  }
+
+  .landing {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+}
