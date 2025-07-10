@@ -562,7 +562,7 @@ button:focus {
   .popular-sidebar {
     position: static;
     width: 100%;
-    height: auto;
+    height: 300px;
     border-right: none;
     padding: 1rem;
     margin: 2rem 0;
