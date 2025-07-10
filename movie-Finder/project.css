@@ -363,7 +363,7 @@ button:focus {
   top: 16vh;
   left: 0;
   width: 14%;
-  height: 85vh;
+  height: 300px;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.15),
@@ -573,10 +573,16 @@ button:focus {
   }
 
   .movie-detail__close {
-    top: 1rem;
-    right: 1rem;
-    font-size: 3.4rem;
-  }
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 3rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  z-index: 9999;
+}
+
 
   /* ----------- POPULAR SIDEBAR ----------- */
   .popular-sidebar {
@@ -621,4 +627,9 @@ button:focus {
   }
 }
 
+@media (max-width: 768px) {
+  body:has(.movies--container[style*="opacity: 1"]) .popular-sidebar {
+    display: none !important;
+  }
+}
 
