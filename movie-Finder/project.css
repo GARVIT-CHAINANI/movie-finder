@@ -314,6 +314,7 @@ button:hover {
   color: #fff;
   cursor: pointer;
 }
+
 .landing {
   display: flex;
   flex-direction: column;
