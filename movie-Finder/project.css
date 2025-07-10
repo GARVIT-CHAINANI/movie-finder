@@ -600,3 +600,8 @@ button:focus {
   }
 }
 
+@media (max-width: 768px) {
+  body:has(.movies--container[style*="opacity: 1"]) .popular-sidebar {
+    display: none !important;
+  }
+}
