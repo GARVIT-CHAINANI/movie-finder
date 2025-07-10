@@ -605,3 +605,42 @@ button:focus {
     display: none !important;
   }
 }
+
+@media (max-width: 768px) {
+  /* Reduce close button size and adjust position */
+  .movie-detail__close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.4rem;
+  }
+
+  /* Make detail content fit nicely */
+  .movie-detail__content {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+
+  /* Make poster image full width */
+  .movie-detail__poster {
+    min-width: 100%;
+  }
+
+  /* Adjust info padding */
+  .movie-detail__info {
+    padding: 1rem;
+  }
+
+  /* Smaller title */
+  .movie-detail__title {
+    font-size: 2.4rem;
+  }
+
+  /* Readable description */
+  .movie-detail__description {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+}
+
