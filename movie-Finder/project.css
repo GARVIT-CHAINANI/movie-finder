@@ -525,9 +525,7 @@ button:focus {
     font-size: 1.6rem;
   }
 
-  .movie-detail__content {
-    flex-direction: column;
-  }
+  
 
   .movie-detail__poster {
     min-width: 100%;
