@@ -446,6 +446,11 @@ button:focus {
     font-size: 55%;
   }
 
+  body {
+    height: auto;
+    overflow: auto;
+  }
+  
   header {
     height: auto;
     padding: 1.5rem;
@@ -478,6 +483,10 @@ button:focus {
     font-size: 1.8rem;
   }
 
+ .container {
+    flex: none;
+  }
+  
   .movies--container {
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
     gap: 2rem;
